@@ -6,23 +6,12 @@
     <meta name="description" content="">
     <title>Форма входа</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="css/style.css" rel="stylesheet">
   </head>
 
   <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">JSExpert</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Главная</a>
-        <a class="p-2 text-dark" href="#">Галлерея</a>
-        <a class="p-2 text-dark" href="#">О компании</a>
-        <a class="p-2 text-dark" href="#">Курсы</a>
-      </nav>
-      <a class="btn btn-outline-primary" href="#">Войти</a>
-    </div>
+    
 
     <main class="text-center " id = "main" role="main">
         <div class="alert alert-danger hide" role="alert" id = "alert-massage1">
@@ -62,25 +51,42 @@
         </form>
     </main>
 
-    <div class="person hide" id = "persone">
-        
+    <div class="person   hide  " id = "persone">
+      
+      <nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand active" href="#">Space XXX</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#person-email">Login data</a></li>
+            <li><a href="#my_photo">Photo</a></li>
+            <li><a href="#environment">Environment</a></li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+
       <div>
         <table class="table">
           
           <tr>
-            <td >
-              <label for = "person-email"> <h4>Users login</h4> </label>
-              <input type="text" id = "person-email" class = "form-control">
+            <td class = "container" >
+              <div class="container user-data-field">
+                  <label for = "person-email"> <h4>Users login</h4> </label>
+                  <input type="text" id = "person-email" class = "form-control input">
+              </div>
             </td>
-            <td >
-              <label for = "person-password"><h4>Password</h4> </label>
-              <input type ="password" id = "person-password"  class = "form-control">
-              <button type="button" id="eye">Показать пароль </button>
+            <td class = "container">
+              <div class="container user-data-field">
+                  <label for = "person-password"><h4>Password</h4> </label>
+                  <input type ="password" id = "person-password"  class = "form-control input">
+                  <button type="button" id="eye">Показать пароль </button>
+              </div>  
               
             </td>
-            <td id = "show-password-btn " >
-            </td>
-          </tr>
         </table>
       </div>
 
@@ -93,7 +99,7 @@
       
       <div class="container-fluid bg-1 text-center">
         <h3>Who Am I?</h3>
-        <img src="img/spaceman2.jpg" class="img-responsive img-circle" style="display:inline" alt="Bird" width="350" height="350">
+        <img src="img/spaceman2.jpg" class="img-responsive img-circle" id = "my_photo" style="display:inline" alt="Bird" width="350" height="350">
         <h3>I'm an adventurer</h3>
       </div>
     
@@ -106,7 +112,7 @@
       </div>
     
       <div class="container-fluid bg-3 text-center">    
-        <h3>Where To Find Me?</h3><br>
+        <h3 id = "environment">Where To Find Me?</h3><br>
         <div class="row">
           <div class="col-sm-4">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -122,6 +128,10 @@
           </div>
         </div>
       </div>
+
+      <footer class="container-fluid bg-4 text-center">
+          <p>Space XXX 2018. All rights reserved. <a href="#">www.w3schools.com</a></p> 
+        </footer>
     
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -135,11 +145,11 @@
     <script src=js/data.js></script>
     <script src=js/service.js></script>
     <script src=js/main.js></script>
-    <script>
+    <!-- <script>
       $(document).ready(function(){
           $('[data-toggle="tooltip"]').tooltip(); 
       });
-      </script>
+      </script> -->
 
   </body>
 </html>

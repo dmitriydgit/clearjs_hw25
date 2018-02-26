@@ -49,9 +49,9 @@ function Validator(data) {
         DOMElements.password.value = null;
     }
     
-    // function initTooltips(){
-    //     $('[data-toggle="tooltip"]').tooltip(); 
-    // }
+    function initTooltips(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    }
 
     function initListeners() {
         DOMElements.submitBtn.addEventListener("click", validate.bind(this));	
@@ -68,6 +68,7 @@ function Validator(data) {
     }
     this.initComponent = function() {     
         initListeners();
+        initTooltips();
     }
 };
 
