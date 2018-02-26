@@ -2,7 +2,18 @@
 
 function Validator(data) {
 
-    let DOMElements = data; 
+    const DOMElements = {
+        email:document.querySelector("#inputEmail"),
+        password:document.querySelector("#inputPassword"),
+        submitBtn:document.querySelector("#submitBtn"),
+        alertMsg:document.querySelector("#alert-massage1"),
+        personPage:document.querySelector("#persone"),
+        form:document.querySelector("#myForm"),
+        backBtn:document.querySelector("#reload"),
+        togglePasswordBtn: document.querySelector("#eye"),
+        personNameField:document.querySelector("#person-email"),
+        personPasswordField:document.querySelector("#person-password")
+        }; 
     let showPassStatus = 0;
     
     function togglePasswordOutput(event){
@@ -29,7 +40,7 @@ function Validator(data) {
 		} else {
             service.showHide(DOMElements.alertMsg,"show");
 		}
-		event.preventDefault();
+		//event.preventDefault();
     }
     function goBack() {
         service.showHide(DOMElements.personPage,"hide");
@@ -37,11 +48,16 @@ function Validator(data) {
         DOMElements.email.value = null;
         DOMElements.password.value = null;
     }
+    
+    // function initTooltips(){
+    //     $('[data-toggle="tooltip"]').tooltip(); 
+    // }
 
     function initListeners() {
         DOMElements.submitBtn.addEventListener("click", validate.bind(this));	
         DOMElements.backBtn.addEventListener("click", goBack.bind(this));	
         DOMElements.togglePasswordBtn.addEventListener("click", togglePasswordOutput.bind(this));
+       // document.addEventListener("load",initTooltips.bind(this));
     }
 
 //************************PUBLIC_METHODS**************************
@@ -55,21 +71,16 @@ function Validator(data) {
     }
 };
 
-let validator = new Validator({
-    email:document.querySelector("#inputEmail"),
-    password:document.querySelector("#inputPassword"),
-    submitBtn:document.querySelector("#submitBtn"),
-    alertMsg:document.querySelector("#alert-massage1"),
-    personPage:document.querySelector("#persone"),
-    form:document.querySelector("#myForm"),
-    backBtn:document.querySelector("#reload"),
-    togglePasswordBtn: document.querySelector("#eye"),
-    personNameField:document.querySelector("#person-email"),
-    personPasswordField:document.querySelector("#person-password")
-    });
+let validator = new Validator();
 
 validator.setLogAndPass({email:"ddd@gmail.com", password:"12345"});
 validator.initComponent();
+
+
+
+
+
+
 
 console.log(validator.showPassStatus);  //проверка
 console.log(validator.DOMElements);  //проверка

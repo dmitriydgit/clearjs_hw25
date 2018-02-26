@@ -32,9 +32,9 @@
             
             <h1 class="h3 mb-3 font-weight-normal">Hello, please sign in</h1>
             <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""  >
+            <input type="text" id="inputEmail" class="form-control" data-toggle="tooltip" title = "Enter your email please!"  placeholder="Email address" required="" autofocus=""  >
             <label for ="inputPassword" class="sr-only">Password</label>
-            <input type ="password" id = "inputPassword" class = "form-control"  placeholder="Password"
+            <input type ="password" id = "inputPassword" class = "form-control" data-toggle="tooltip" title = "Enter your password   please!"  placeholder="Password"
             required = ""  autocomplete="off">
             <!--*************************************-->
             
@@ -57,7 +57,7 @@
             </div>
           -->
 
-            <button class="btn btn-lg btn-primary btn-block" id = "submitBtn" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" id = "submitBtn" type="button" >Sign in</button>
             <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
         </form>
     </main>
@@ -78,7 +78,7 @@
               <button type="button" id="eye">Показать пароль </button>
               
             </td>
-            <td id = "show-password-btn" >
+            <td id = "show-password-btn " >
             </td>
           </tr>
         </table>
@@ -87,7 +87,7 @@
 
 
       <div class = "text-center reload" id = "wrapper" >
-        <button class="btn btn-lg btn-primary btn-block" id ="reload" type="button">Back</button>
+        <button class="btn btn-lg btn-primary btn-block" id ="reload" type="button"  data-toggle="tooltip" title = "Press to go back on main page.">Back</button>
       </div>
 
       
@@ -124,7 +124,9 @@
       </div>
     
     </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="https://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
     <script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
@@ -133,6 +135,12 @@
     <script src=js/data.js></script>
     <script src=js/service.js></script>
     <script src=js/main.js></script>
+    <script>
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip(); 
+      });
+      </script>
+
   </body>
 </html>
 
