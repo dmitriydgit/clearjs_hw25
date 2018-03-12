@@ -3,20 +3,22 @@
 function Validator(data) {
 
     const DOMElements = {
-        email:document.querySelector("#inputEmail"),
-        password:document.querySelector("#inputPassword"),
-        submitBtn:document.querySelector("#submitBtn"),
-        alertMsg:document.querySelector("#alert-massage1"),
-        personPage:document.querySelector("#persone"),
-        form:document.querySelector("#myForm"),
-        backBtn:document.querySelector("#reload"),
-        togglePasswordBtn: document.querySelector("#eye"),
-        personNameField:document.querySelector("#person-email"),
-        personPasswordField:document.querySelector("#person-password")
+        email : document.querySelector("#inputEmail"),
+        password : document.querySelector("#inputPassword"),
+        submitBtn : document.querySelector("#submitBtn"),
+        alertMsg : document.querySelector("#alert-massage1"),
+        personPage : document.querySelector("#persone"),
+        form : document.querySelector("#myForm"),
+        backBtn : document.querySelector("#reload"),
+        togglePasswordBtn : document.querySelector("#eye"),
+        personNameField : document.querySelector("#person-email"),
+        personPasswordField : document.querySelector("#person-password")
         }; 
     let showPassStatus = 0;
+
+
     
-    function togglePasswordOutput(event){
+    function togglePasswordOutput(){
         if(showPassStatus === 0){
             showPassStatus = 1;
             service.showHidePass(DOMElements.personPasswordField , "text");
@@ -27,15 +29,27 @@ function Validator(data) {
             DOMElements.togglePasswordBtn.innerText = "Показать пароль";
         }
     }
+    
+    function initValidation(event){
+        if(event.keyCode == 13) {
+            validate();
+        }
+    }
+
+    function fillInputs(inp , pass){
+        DOMElements.personNameField.value = inp;    //в продублированные поля копируем значения из инпутов 
+        DOMElements.personPasswordField.value = pass;
+    }
     function validate() {
-        if(DOMElements.email.value && DOMElements.password.value &&            
-            service.checkEmail(DOMElements.email.value) &&                            
-            service.checkUser(DOMElements.email.value, DOMElements.password.value)){ 
+        let validEmail = DOMElements.email.value,
+        validPassword = DOMElements.password.value;
+        if(validEmail && validPassword &&            
+            service.checkEmail(validEmail) &&                            
+            service.checkUser(validEmail, validPassword)){ 
                 service.showHide(DOMElements.personPage,"show");
                 service.showHide(DOMElements.form , "hide");
                 service.showHide(DOMElements.alertMsg , "hide");
-                DOMElements.personNameField.value = DOMElements.email.value;    //в продублированные поля копируем значения из инпутов 
-                DOMElements.personPasswordField.value = DOMElements.password.value;
+                fillInputs(validEmail , validPassword);
                 service.print("success");
 		} else {
             service.showHide(DOMElements.alertMsg,"show");
@@ -45,8 +59,8 @@ function Validator(data) {
     function goBack() {
         service.showHide(DOMElements.personPage,"hide");
         service.showHide(DOMElements.form,"show");
-        DOMElements.email.value = null;
-        DOMElements.password.value = null;
+        DOMElements.email.value = "";
+        DOMElements.password.value = "";
     }
     
     function initTooltips(){
@@ -54,17 +68,23 @@ function Validator(data) {
     }
 
     function initListeners() {
+        DOMElements.form.addEventListener("keypress", initValidation.bind(this));
         DOMElements.submitBtn.addEventListener("click", validate.bind(this));	
         DOMElements.backBtn.addEventListener("click", goBack.bind(this));	
         DOMElements.togglePasswordBtn.addEventListener("click", togglePasswordOutput.bind(this));
-       // document.addEventListener("load",initTooltips.bind(this));
+        document.addEventListener("load",initTooltips.bind(this));
     }
 
 //************************PUBLIC_METHODS**************************
 
     this.setLogAndPass = function(obj) {
-        localStorage.email = obj.email;
-        localStorage.password = obj.password;
+        
+        if((typeof obj == "object") &&  obj["email"] && obj["password"]){
+            localStorage.email = obj.email;
+            localStorage.password = obj.password;
+        }else {
+            console.log("Local storage : incorrect data")
+        }
     }
     this.initComponent = function() {     
         initListeners();
@@ -72,15 +92,12 @@ function Validator(data) {
     }
 };
 
+let service = new Service();
 let validator = new Validator();
+
 
 validator.setLogAndPass({email:"ddd@gmail.com", password:"12345"});
 validator.initComponent();
-
-
-
-
-
 
 
 console.log(validator.showPassStatus);  //проверка
@@ -89,7 +106,19 @@ console.log(Validator.showPassStatus); //проверка
 
 
 
+//         DOMElements.form.addEventListener("keypress", initValidation.bind(this));
 
+/*
+this.setLogAndPass = function(obj) {
+        
+        if((typeof obj == "object") &&  obj["email"] && obj["password"]){
+            localStorage.email = obj.email;
+            localStorage.password = obj.password;
+        }else {
+            console.log("Local storage : incorrect data")
+        }
+    }
+*/
 
 // так и не понял как подключать иконки бутстрап и скрипты jquery внедрять в модуль  -
 

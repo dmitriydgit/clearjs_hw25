@@ -15,11 +15,11 @@ function Service() {
             return false;
         }
     }
-    this.showHide = function(elem, action){                                              
-        elem.classList.remove("show");
-        elem.classList.remove("hide");
-        elem.classList.add(action);
-    }
+
+        this.showHide = function(elem, action){                                              
+            elem.classList.remove("show", "hide");
+            elem.classList.add(action);
+        }
     this.showHidePass = function(elem, type){                                          
         elem.setAttribute('type', type);
     }
@@ -28,7 +28,7 @@ function Service() {
     }
 };
 
-let service = new Service();
+
 
 
 
